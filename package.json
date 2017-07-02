@@ -1,0 +1,25 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "install": "npm run install.server && npm run install.client",
+    "build": "npm run build.server && npm run build.client",
+
+    "install.server": "cd ./server && npm install",
+    "install.client": "cd ./client && npm install",
+    "prebuild": "rimraf ./dist",
+    "postbuild": "npm run collect.server && npm run collect.client",
+    "build.server": "cd ./server && npm run build",
+    "build.client": "cd ./client && npm run build",
+    "collect.server": "cpx ./server/dist/**/*.* ./dist",
+    "collect.client": "cpx ./client/dist/**/*.* ./dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cpx": "^1.5.0",
+    "rimraf": "^2.6.1"
+  }
+}
