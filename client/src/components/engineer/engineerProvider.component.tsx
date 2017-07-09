@@ -112,7 +112,7 @@ export class EngineerProviderComponent extends React.Component<EngineerProviderC
 
                 <div className='form-group'>
                   <div className='col-md-6 col-sm-6 col-xs-12 col-md-offset-6'>
-                    <button className='btn btn-primary' type='button' onClick={this.onRegister.bind(this)}>Register</button>
+                    <button className='btn btn-primary' type='button' onClick={this.onRegister}>Register</button>
                   </div>
                 </div>
 

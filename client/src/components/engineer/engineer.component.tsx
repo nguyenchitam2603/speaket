@@ -18,7 +18,7 @@ export class EngineerComponent extends React.Component<EngineerComponent.Props, 
   render() {
     return (
       <div>
-        <EngineerProviderComponent onRegister={this.props.onRegister.bind(this)}/>
+        <EngineerProviderComponent onRegister={this.props.onRegister}/>
         <EngineerViewComponent engineers={this.props.engineers}/>
       </div>
     );

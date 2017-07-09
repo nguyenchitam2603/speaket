@@ -81,6 +81,7 @@ module.exports = {
       { from: '../node_modules/gentelella/build/js/custom.min.js', to: 'js/custom.min.js' },
 
       { from: '../node_modules/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css', to: 'css/bootstrap.min.css' },
+      { from: '../node_modules/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css.map', to: 'css/bootstrap.min.css.map' },
       { from: '../node_modules/gentelella/vendors/font-awesome/css/font-awesome.min.css', to: 'css/font-awesome.min.css' },
       { from: '../node_modules/gentelella/vendors/nprogress/nprogress.css', to: 'css/nprogress.css' },
       { from: '../node_modules/gentelella/vendors/iCheck/skins/flat/green.css', to: 'css/green.css' },

@@ -1,15 +1,13 @@
 import * as Hapi from 'hapi';
 
+import { ServerMethods } from './server.methods';
+
 let server: Hapi.Server = new Hapi.Server();
 server.connection({ host: 'localhost', port: 3000 });
+let serverMethods: ServerMethods = new ServerMethods(server);
 
-server.route({
-  method: 'GET',
-  path: '/{name}',
-  handler: function (request: Hapi.Request, reply: Hapi.ReplyNoContinue) {
-    console.log('ZO PATH')
-  }
-});
+serverMethods.registerPlugins();
+serverMethods.registerRoutes();
 
 server.start((err) => {
   if (err) {
@@ -17,4 +15,4 @@ server.start((err) => {
   }
 
   console.log('Server running at: ${server.info.uri}');
-})
+});
