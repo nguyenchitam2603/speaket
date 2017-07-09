@@ -110,7 +110,12 @@ module.exports = {
     }),
     new CopyWebpackPlugin([
       // Relative to context path (src) in this case
+      { from: '../node_modules/jquery/dist/jquery.min.js', to: 'js/jquery.min.js' },
+      { from: '../node_modules/gentelella/vendors/bootstrap/dist/js/bootstrap.min.js', to: 'js/bootstrap.min.js' },
+      { from: '../node_modules/gentelella/build/js/custom.min.js', to: 'js/custom.min.js' },
+
       { from: '../node_modules/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css', to: 'css/bootstrap.min.css' },
+      { from: '../node_modules/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css.map', to: 'css/bootstrap.min.css.map' },
       { from: '../node_modules/gentelella/vendors/font-awesome/css/font-awesome.min.css', to: 'css/font-awesome.min.css' },
       { from: '../node_modules/gentelella/vendors/nprogress/nprogress.css', to: 'css/nprogress.css' },
       { from: '../node_modules/gentelella/vendors/iCheck/skins/flat/green.css', to: 'css/green.css' },
@@ -134,6 +139,14 @@ module.exports = {
         'css/custom.min.css',
       ],
       append: false
-    })
+    }),
+    new HtmlWebpackIncludeAssetsPlugin({
+      assets: [
+        'js/jquery.min.js',
+        'js/bootstrap.min.js',
+        'js/custom.min.js'
+      ],
+      append: true
+    }),
   ]
 }
