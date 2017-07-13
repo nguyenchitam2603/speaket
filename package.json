@@ -1,7 +1,10 @@
 {
-  "name": "app",
+  "name": "speaket",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "6.3.1"
+  },
   "scripts": {
     "install": "npm run install.server && npm run install.client",
     "build": "npm run build.server && npm run build.client",
