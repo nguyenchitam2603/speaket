@@ -148,5 +148,10 @@ module.exports = {
       ],
       append: true
     }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'ENVIROMENT': JSON.stringify('PRODUCTION')
+      }
+    })
   ]
 }

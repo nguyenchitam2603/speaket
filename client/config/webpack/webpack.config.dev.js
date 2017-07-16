@@ -119,6 +119,11 @@ module.exports = {
       exclude: /node_modules/,
       // add errors to webpack instead of warnings 
       failOnError: true
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'ENVIROMENT': JSON.stringify('DEVELOPMENT')
+      }
     })
   ],
   devServer: {
