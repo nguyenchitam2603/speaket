@@ -122,7 +122,8 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'process.env': {
-        'ENVIROMENT': JSON.stringify('DEVELOPMENT')
+        'ENVIROMENT': JSON.stringify('DEVELOPMENT'),
+        'PORT': JSON.stringify(3000)
       }
     })
   ],

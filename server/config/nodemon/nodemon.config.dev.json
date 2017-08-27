@@ -1,0 +1,5 @@
+{
+  "env": {
+    "ENABLE_CORS": true
+  }
+}

@@ -1,6 +1,8 @@
 import * as Hapi from 'hapi';
 import { FileHandlerRouteObject } from 'inert';
 
+import { apiRoutes } from './api';
+
 let fileRouteConfigurations: Hapi.RouteConfiguration[] = [
   {
     method: 'GET',
@@ -39,7 +41,8 @@ let fileRouteConfigurations: Hapi.RouteConfiguration[] = [
 ];
 
 let routeConfigurations: Hapi.RouteConfiguration[] = [
-  ...fileRouteConfigurations
+  ...fileRouteConfigurations,
+  ...apiRoutes
 ];
 
 export function registerRoutes() {

@@ -1,9 +1,14 @@
 import * as Hapi from 'hapi';
 
 import { ServerMethods } from './server.methods';
-
 let server: Hapi.Server = new Hapi.Server();
-server.connection({ host: 'localhost', port: 3000 });
+server.connection({
+  host: '0.0.0.0',
+  port: process.env.PORT || 3000,
+  routes: {
+    cors: process.env.ENABLE_CORS === 'true'
+  }
+});
 let serverMethods: ServerMethods = new ServerMethods(server);
 
 serverMethods.registerPlugins();

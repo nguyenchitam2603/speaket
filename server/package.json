@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --watch src/**/*.ts --exec ts-node src/server.ts",
+    "start": "nodemon --config config/nodemon/nodemon.config.dev.json --watch src/**/*.ts --exec ts-node src/server.ts",
     "build": "webpack --progress --config config/webpack/webpack.config.prod.js"
   },
   "keywords": [],
@@ -22,6 +22,7 @@
     "tslint-loader": "^3.5.3",
     "typescript": "^2.3.2",
     "webpack": "^2.5.1",
+    "webpack-dev-server": "^2.5.1",
     "webpack-node-externals": "^1.6.0"
   },
   "dependencies": {
@@ -29,6 +30,7 @@
     "good-console": "^6.4.0",
     "good-squeeze": "^5.0.2",
     "hapi": "^16.1.1",
+    "hapi-mongoose": "^1.0.1",
     "inert": "^4.2.0"
   }
 }
