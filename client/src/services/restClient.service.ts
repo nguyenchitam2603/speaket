@@ -1,9 +1,16 @@
+let isRelativeUrl = require('is-relative-url');
+
+declare var process;
+
 export class RestClientService {
   private static restClientService;
   private readonly headers: Headers = new Headers({
     'Content-Type': 'application/json',
     'Accept': 'application/json'
   });
+  private readonly baseUrl: string = window.location.protocol
+  + '//' + window.location.hostname + ':'
+  + process.env.PORT || window.location.port;
 
   private constructor() { }
 
@@ -17,8 +24,8 @@ export class RestClientService {
 
   public get(url: string, customHeaders?: Headers): Promise<any> {
     let headers: Headers = customHeaders ? customHeaders : this.headers;
-
-    return fetch(url, {
+    // The url can be a relative or absolute url
+    return fetch(isRelativeUrl(url) ? (this.baseUrl + url) : url, {
       method: 'GET',
       headers: headers
     }).then((response: Response) => {
@@ -28,8 +35,8 @@ export class RestClientService {
 
   public post(url: string, payload: any, customHeaders?: Headers): Promise<any> {
     let headers: Headers = customHeaders ? customHeaders : this.headers;
-
-    return fetch(url, {
+    // The url can be a relative or absolute url
+    return fetch(isRelativeUrl(url) ? (this.baseUrl + url) : url, {
       method: 'POST',
       headers: headers,
       body: JSON.stringify(payload)
@@ -40,8 +47,8 @@ export class RestClientService {
 
   public put(url: string, payload: any, customHeaders?: Headers): Promise<any> {
     let headers: Headers = customHeaders ? customHeaders : this.headers;
-
-    return fetch(url, {
+    // The url can be a relative or absolute url
+    return fetch(isRelativeUrl(url) ? (this.baseUrl + url) : url, {
       method: 'PUT',
       headers: headers,
       body: JSON.stringify(payload)
@@ -52,8 +59,8 @@ export class RestClientService {
 
   public delete(url: string, customHeaders?: Headers): Promise<any> {
     let headers: Headers = customHeaders ? customHeaders : this.headers;
-
-    return fetch(url, {
+    // The url can be a relative or absolute url
+    return fetch(isRelativeUrl(url) ? (this.baseUrl + url) : url, {
       method: 'DELETE',
       headers: headers
     }).then((response: Response) => {

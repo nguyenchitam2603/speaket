@@ -5,7 +5,6 @@ import { EngineerComponent } from './../../components/engineer/engineer.componen
 import { IAppState, Engineer } from './../../models';
 
 function mapStateToProps(state: IAppState) {
-  console.log('DAY', Array.isArray(state.engineers))
   return {
     engineers: state.engineers
   }

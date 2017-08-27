@@ -5,11 +5,9 @@ import * as Routes from './../app.routes';
 
 namespace LoginComponent {
   export interface Props {
-
   }
 
   export interface State {
-
   }
 }
 

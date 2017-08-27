@@ -150,7 +150,8 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'process.env': {
-        'ENVIROMENT': JSON.stringify('PRODUCTION')
+        'ENVIROMENT': JSON.stringify('PRODUCTION'),
+        'PORT': JSON.stringify('')
       }
     })
   ]

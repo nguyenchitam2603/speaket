@@ -2,18 +2,29 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 
 import * as Routes from './../app.routes';
+import { SignUpInfo } from './../../models';
 
 namespace SignUpComponent {
   export interface Props {
-
+    onSignUp: (signUpInfo: SignUpInfo) => void
   }
 
   export interface State {
-
   }
 }
 
 export class SignUpComponent extends React.Component<SignUpComponent.Props, SignUpComponent.State> {
+  constructor() {
+    super();
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    this.props.onSignUp(new SignUpInfo('tam', '123', 'abc@gmai.com'));
+  }
+
   render() {
     return (
       <div>
@@ -23,7 +34,7 @@ export class SignUpComponent extends React.Component<SignUpComponent.Props, Sign
         <div className='login_wrapper'>
           <div id='register' className='form'>
             <section className='login_content'>
-              <form>
+               <form onSubmit={this.handleSubmit}>
                 <h1>Create Account</h1>
                 <div>
                   <input type='text' className='form-control' placeholder='Username' />
@@ -35,7 +46,8 @@ export class SignUpComponent extends React.Component<SignUpComponent.Props, Sign
                   <input type='password' className='form-control' placeholder='Password' />
                 </div>
                 <div>
-                  <a className='btn btn-default submit' href='index.html'>Submit</a>
+                  <button type="submit" className="btn btn-default">Submit</button>
+                  {/* <a className='btn btn-default submit'>Submit</a> */}
                 </div>
 
                 <div className='clearfix' />
@@ -49,11 +61,11 @@ export class SignUpComponent extends React.Component<SignUpComponent.Props, Sign
                   <br />
 
                   <div>
-                    <h1><i className='fa fa-paw' /> Gentelella Alela!</h1>
-                    <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+                    <h1><i className='fa fa-paw' /> Speaket</h1>
+                    <p>©2017 All Rights Reserved.</p>
                   </div>
                 </div>
-              </form>
+              </form> 
             </section>
           </div>
         </div>
