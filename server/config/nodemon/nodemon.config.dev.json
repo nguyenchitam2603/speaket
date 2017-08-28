@@ -1,5 +1,6 @@
 {
   "env": {
-    "ENABLE_CORS": true
+    "enable_cors": true,
+    "database_config_file": "database.config.dev.json"
   }
 }

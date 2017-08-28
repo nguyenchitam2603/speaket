@@ -1,0 +1,10 @@
+{
+  "mongoose": {
+    "connection_string": "mongodb://ds159953.mlab.com:59953/speaket",
+    "connection_options": {
+      "user": "admin",
+      "pass": "speaketprod",
+      "useMongoClient": true
+    }
+  }
+}

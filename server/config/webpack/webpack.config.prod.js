@@ -1,7 +1,8 @@
-var fs = require('fs');
-var path = require('path');
-var CleanWebpackPlugin = require('clean-webpack-plugin');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
+const fs = require('fs');
+const path = require('path');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const webpack = require('webpack');
 
 const serverPath = path.resolve(__dirname, "..", "..");
 const sourcePath = path.resolve(serverPath, "src");
@@ -52,10 +53,16 @@ module.exports = {
       root: serverPath
     }),
     new CopyWebpackPlugin([
-      { 
+      {
         from: path.resolve(serverPath, "package.json"),
         to: distPath
       }
-    ])
+    ]),
+    new webpack.DefinePlugin({
+      'process.env': {
+        "enable_cors": true,
+        "database_config_file": "database.config.prod.json"
+      }
+    })
   ]
 }
