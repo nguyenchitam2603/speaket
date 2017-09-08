@@ -1,5 +1,6 @@
 {
-  "mongoose": {
+  "Speaket_database": "Mongoose",
+  "Mongoose": {
     "connection_string": "mongodb://localhost:27017/speaket",
     "connection_options": {
       "user": "admin",

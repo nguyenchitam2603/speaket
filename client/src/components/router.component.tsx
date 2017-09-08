@@ -2,8 +2,7 @@ import * as React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import { AppComponent } from './app.component';
-import { LoginComponent, SignUpComponent } from './authentication';
-import { SignUpContainer } from './../containers';
+import { SignInComponent, SignUpComponent } from './../components/user';
 import * as Routes from './app.routes';
 
 namespace RouterComponent {
@@ -19,8 +18,8 @@ export class RouterComponent extends React.Component<RouterComponent.Props, Rout
     return (
       <BrowserRouter>
         <Switch>
-          <Route path={Routes.loginUrl} render={() => <LoginComponent />} />
-          <Route path={Routes.signupUrl} render={() => <SignUpContainer />} />
+          <Route path={Routes.signInUrl} render={() => <SignInComponent />} />
+          <Route path={Routes.signUpUrl} render={() => <SignUpComponent />} />
           <Route path={Routes.baseUrl} render={() => <AppComponent />} />
         </Switch>
       </BrowserRouter>

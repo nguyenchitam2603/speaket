@@ -113,6 +113,7 @@ module.exports = {
       { from: '../node_modules/jquery/dist/jquery.min.js', to: 'js/jquery.min.js' },
       { from: '../node_modules/gentelella/vendors/bootstrap/dist/js/bootstrap.min.js', to: 'js/bootstrap.min.js' },
       { from: '../node_modules/gentelella/build/js/custom.min.js', to: 'js/custom.min.js' },
+      { from: '../node_modules/react-social-login/dist/social-login.js', to: 'js/social-login.js' },
 
       { from: '../node_modules/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css', to: 'css/bootstrap.min.css' },
       { from: '../node_modules/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css.map', to: 'css/bootstrap.min.css.map' },
@@ -123,6 +124,7 @@ module.exports = {
       { from: '../node_modules/gentelella/vendors/jqvmap/dist/jqvmap.min.css', to: 'css/jqvmap.min.css' },
       { from: '../node_modules/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.css', to: 'css/daterangepicker.css' },
       { from: '../node_modules/gentelella/build/css/custom.min.css', to: 'css/custom.min.css' },
+      { from: '../node_modules/bootstrap-social/bootstrap-social.css', to: 'css/bootstrap-social.css' },
 
       { from: '../node_modules/gentelella/vendors/font-awesome/fonts/fontawesome-webfont.*', to: 'fonts/[name].[ext]' },
       { from: '../node_modules/gentelella/vendors/bootstrap/dist/fonts/glyphicons-halflings-regular.*', to: 'fonts/[name].[ext]' },
@@ -137,6 +139,7 @@ module.exports = {
         'css/jqvmap.min.css',
         'css/daterangepicker.css',
         'css/custom.min.css',
+        'css/bootstrap-social.css'
       ],
       append: false
     }),
@@ -144,14 +147,19 @@ module.exports = {
       assets: [
         'js/jquery.min.js',
         'js/bootstrap.min.js',
-        'js/custom.min.js'
+        'js/custom.min.js',
+        'js/social-login.js'
       ],
       append: true
     }),
     new webpack.DefinePlugin({
       'process.env': {
         'ENVIROMENT': JSON.stringify('PRODUCTION'),
-        'PORT': JSON.stringify('')
+        'PORT': JSON.stringify(''),
+
+        // Social App Ids
+        'FACEBOOK_APP_ID': JSON.stringify('1762885930450916'),
+        'GOOGLE_APP_ID': JSON.stringify('984254288650-r5hivgg7sj5ab0eksuf968vmrqu969t8.apps.googleusercontent.com')
       }
     })
   ]

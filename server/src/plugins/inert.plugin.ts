@@ -1,6 +1,7 @@
-import { IPlugin } from './iPlugin';
+import { IPlugin } from './i-plugin';
 
 export const inertPlugin: IPlugin = {
   require: require('inert'),
-  options: {}
+  options: {},
+  callback: null
 };
