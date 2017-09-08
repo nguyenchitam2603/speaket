@@ -1,24 +1,24 @@
-const fs = require('fs');
-const path = require('path');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const webpack = require('webpack');
+const fs = require("fs");
+const path = require("path");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const webpack = require("webpack");
 
 const serverPath = path.resolve(__dirname, "..", "..");
 const sourcePath = path.resolve(serverPath, "src");
 const distPath = path.resolve(serverPath, "dist");
 
 var nodeModules = {};
-fs.readdirSync('node_modules')
+fs.readdirSync("node_modules")
   .filter(function (x) {
-    return ['.bin'].indexOf(x) === -1;
+    return [".bin"].indexOf(x) === -1;
   })
   .forEach(function (mod) {
-    nodeModules[mod] = 'commonjs ' + mod;
+    nodeModules[mod] = "commonjs " + mod;
   });
 
 module.exports = {
-  target: 'node',
+  target: "node",
   context: sourcePath,
   entry: "./server.ts",
   output: {
@@ -33,8 +33,8 @@ module.exports = {
     rules: [
       {
         test: /\.(ts)?$/,
-        enforce: 'pre',
-        loader: 'tslint-loader',
+        enforce: "pre",
+        loader: "tslint-loader",
         options: {
           emitErrors: true,
           failOnHint: false
@@ -59,9 +59,13 @@ module.exports = {
       }
     ]),
     new webpack.DefinePlugin({
-      'process.env': {
-        "enable_cors": true,
-        "database_config_file": "database.config.prod.json"
+      "process.env": {
+        // Environment
+        "ENVIRONMENT": JSON.stringify("PROD"),
+
+        // Server config variables
+        "PORT": "process.env.PORT",
+        "ENABLE_CORS": true
       }
     })
   ]

@@ -41,7 +41,13 @@ export class RestClientService {
       headers: headers,
       body: JSON.stringify(payload)
     }).then((response: Response) => {
-      return response.json();
+      return response.json().then(data => {
+        if (response.ok) {
+          return data;
+        } else {
+          return Promise.reject(data);
+        }
+      });
     });
   }
 

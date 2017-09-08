@@ -1,0 +1,7 @@
+.signup_error {
+  font: normal 15px Helvetica, Arial, sans-serif;
+  letter-spacing: -0.05em;
+  line-height: 20px;
+  margin: 0 0 20px;
+  color: red;
+}

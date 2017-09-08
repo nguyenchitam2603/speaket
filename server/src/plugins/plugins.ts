@@ -1,11 +1,13 @@
 import * as Hapi from 'hapi';
 import * as path from 'path';
 
+import { authCookiePlugin } from './auth-cookie.plugin';
 import { goodPlugin } from './good.plugin';
 import { inertPlugin } from './inert.plugin';
-import { IPlugin } from './iPlugin';
+import { IPlugin } from './i-plugin';
 
 let plugins: IPlugin[] = [
+  authCookiePlugin,
   goodPlugin,
   inertPlugin
 ];
@@ -20,6 +22,10 @@ export function registerPlugins() {
     }, (err) => {
       if (err) {
         throw err;
+      }
+
+      if (plugin.callback) {
+        plugin.callback.call(server);
       }
     });
   });

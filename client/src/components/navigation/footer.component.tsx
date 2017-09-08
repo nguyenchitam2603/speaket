@@ -28,7 +28,7 @@ export class FooterComponent extends React.Component<FooterComponent.Props, Foot
         <a data-toggle='tooltip' data-placement='top' title='' href='login.html' data-original-title='Lock'>
           <span className='glyphicon glyphicon-eye-close' aria-hidden='true'/>
         </a>
-        <Link to={Routes.loginUrl} data-toggle='tooltip' data-placement='top' title='' href='login.html' data-original-title='Logout'>
+        <Link to={Routes.signInUrl} data-toggle='tooltip' data-placement='top' title='' href='login.html' data-original-title='Logout'>
           <span className='glyphicon glyphicon-off' aria-hidden='true'/>
         </Link>
       </div>

@@ -1,4 +1,4 @@
-import { IPlugin } from './iPlugin';
+import { IPlugin } from './i-plugin';
 
 export const goodPlugin: IPlugin = {
   require: require('good'),
@@ -15,5 +15,6 @@ export const goodPlugin: IPlugin = {
         module: 'good-console'
       }, 'stdout']
     }
-  }
+  },
+  callback: null
 };
