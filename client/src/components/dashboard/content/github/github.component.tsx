@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { GithubMember } from './../../models';
+import { GithubMember } from './../../../../models';
 
 namespace GithubComponent {
   export interface Props {

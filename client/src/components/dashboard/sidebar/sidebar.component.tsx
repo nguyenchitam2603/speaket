@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { FooterComponent } from './footer.component';
 import { MenuComponent } from './menu.component';
-import * as Routes from './../app.routes';
+import * as Routes from './../../app.routes';
 
 namespace SidebarComponent {
   export interface Props {

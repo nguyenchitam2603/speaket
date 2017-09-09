@@ -1,7 +1,7 @@
 import { connect, Dispatch } from 'react-redux';
 
 import { fetchGithubMembers } from './../../actions';
-import { GithubComponent } from './../../components/github/github.component';
+import { GithubComponent } from './../../components/dashboard/content/github/github.component';
 import { IAppState } from './../../models';
 
 function mapStateToProps(state: IAppState) {

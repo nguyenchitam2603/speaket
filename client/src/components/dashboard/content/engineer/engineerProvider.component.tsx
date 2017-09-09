@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 
-import { Engineer } from './../../models';
+import { Engineer } from './../../../../models';
 
 namespace EngineerProviderComponent {
   export interface IProps {

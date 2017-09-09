@@ -1,7 +1,7 @@
 import { connect, Dispatch } from 'react-redux';
 
 import { registerEngineer } from './../../actions';
-import { EngineerComponent } from './../../components/engineer/engineer.component';
+import { EngineerComponent } from './../../components/dashboard/content/engineer/engineer.component';
 import { IAppState, Engineer } from './../../models';
 
 function mapStateToProps(state: IAppState) {

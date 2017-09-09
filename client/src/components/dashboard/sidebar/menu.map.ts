@@ -1,4 +1,4 @@
-import * as Routes from './../app.routes';
+import * as Routes from './../../app.routes';
 
 export const menuItemMap = {
     link: '/',

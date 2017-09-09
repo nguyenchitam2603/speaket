@@ -113,7 +113,6 @@ module.exports = {
       assets: [
         'js/jquery.min.js',
         'js/bootstrap.min.js',
-        'js/custom.min.js',
         'js/social-login.js'
       ],
       append: true
