@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Engineer } from './../../models';
+import { Engineer } from './../../../../models';
 
 namespace EngineerViewComponent {
   export interface Props {

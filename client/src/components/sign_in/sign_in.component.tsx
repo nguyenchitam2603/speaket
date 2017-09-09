@@ -5,7 +5,7 @@ import { Link, Redirect } from 'react-router-dom';
 import * as Routes from '../app.routes';
 import { RestClientService } from '../../services';
 import { SignInPayload } from '../../models';
-import SocialLoginComponent from './social_button.component';
+import SocialLoginComponent from '../share/socials/social_button.component';
 
 import * as styles from './sign_in.style.css';
 
@@ -68,7 +68,7 @@ export class SignInComponent extends React.Component<SignInComponent.Props, Sign
 
   render() {
     if (this.state.redirect) {
-      return <Redirect to={Routes.baseUrl} />;
+      return <Redirect to={Routes.dashboardUrl} />;
     } else {
       return (
         <div>

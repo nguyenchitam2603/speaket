@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 
-import * as Routes from './../app.routes';
+import * as Routes from './../../app.routes';
 
 namespace FooterComponent {
   export interface Props {
@@ -19,16 +19,16 @@ export class FooterComponent extends React.Component<FooterComponent.Props, Foot
   render() {
     return (
       <div className='sidebar-footer hidden-small'>
-        <a data-toggle='tooltip' data-placement='top' title='' data-original-title='Settings'>
+        <a title='Settings'>
           <span className='glyphicon glyphicon-cog' aria-hidden='true'/>
         </a>
-        <a data-toggle='tooltip' data-placement='top' title='' href='login.html' data-original-title='FullScreen'>
+        <a title='FullScreen'>
           <span className='glyphicon glyphicon-fullscreen' aria-hidden='true'/>
         </a>
-        <a data-toggle='tooltip' data-placement='top' title='' href='login.html' data-original-title='Lock'>
+        <a title='Lock'>
           <span className='glyphicon glyphicon-eye-close' aria-hidden='true'/>
         </a>
-        <Link to={Routes.signInUrl} data-toggle='tooltip' data-placement='top' title='' href='login.html' data-original-title='Logout'>
+        <Link to={Routes.signInUrl} title='Logout'>
           <span className='glyphicon glyphicon-off' aria-hidden='true'/>
         </Link>
       </div>

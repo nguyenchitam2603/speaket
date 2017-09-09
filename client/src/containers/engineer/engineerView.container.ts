@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import { IAppState } from './../../models';
-import { EngineerViewComponent } from './../../components/engineer/engineerView.component';
+import { EngineerViewComponent } from './../../components/dashboard/content/engineer/engineerView.component';
 
 function mapStateToProps(state) {
   return {

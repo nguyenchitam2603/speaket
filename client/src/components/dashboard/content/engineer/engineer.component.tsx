@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { EngineerProviderComponent } from './engineerProvider.component';
 import { EngineerViewComponent } from './engineerView.component';
-import { Engineer } from './../../models';
+import { Engineer } from './../../../../models';
 
 namespace EngineerComponent {
   export interface Props {
