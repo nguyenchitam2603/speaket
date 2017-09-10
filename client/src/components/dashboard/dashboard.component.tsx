@@ -37,7 +37,7 @@ export class DashboardComponent extends React.Component<DashboardComponent.Props
             <div className='nav_menu'>
               <nav>
                 <div className='nav toggle'>
-                  <a id='menu_toggle'><i className='fa fa-bars'></i></a>
+                  <a id='menu_toggle'><i className='fa fa-bars'/></a>
                 </div>
 
                 <ul className='nav navbar-nav navbar-right'>
@@ -57,7 +57,7 @@ export class DashboardComponent extends React.Component<DashboardComponent.Props
                       <li><a href='javascript:;'>Help</a></li>
                       <li>
                         <Link to={Routes.signInUrl}>
-                          <i className='fa fa-sign-out pull-right'></i> Log Out
+                          <i className='fa fa-sign-out pull-right'/> Log Out
                         </Link>
                       </li>
                     </ul>
@@ -65,7 +65,7 @@ export class DashboardComponent extends React.Component<DashboardComponent.Props
 
                   <li role='presentation' className='dropdown'>
                     <a href='javascript:;' className='dropdown-toggle info-number' data-toggle='dropdown' aria-expanded='false'>
-                      <i className='fa fa-envelope-o'></i>
+                      <i className='fa fa-envelope-o'/>
                       <span className='badge bg-green'>6</span>
                     </a>
                     <ul id='menu1' className='dropdown-menu list-unstyled msg_list' role='menu'>
@@ -121,7 +121,7 @@ export class DashboardComponent extends React.Component<DashboardComponent.Props
                         <div className='text-center'>
                           <a>
                             <strong>See All Alerts</strong>
-                            <i className='fa fa-angle-right'></i>
+                            <i className='fa fa-angle-right'/>
                           </a>
                         </div>
                       </li>
