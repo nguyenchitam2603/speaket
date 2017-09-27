@@ -13,6 +13,13 @@ let fileRouteConfigurations: Hapi.RouteConfiguration[] = [
   },
   {
     method: 'GET',
+    path: '/{param*}',
+    handler: {
+      file: 'index.html'
+    }
+  },
+  {
+    method: 'GET',
     path: '/js/{file*}',
     handler: {
       directory: {
