@@ -64,8 +64,7 @@ module.exports = {
         "ENVIRONMENT": JSON.stringify("PROD"),
 
         // Server config variables
-        "PORT": "process.env.PORT",
-        "ENABLE_CORS": true
+        "PORT": "process.env.PORT"
       }
     })
   ]

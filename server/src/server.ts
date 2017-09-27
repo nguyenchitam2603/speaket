@@ -7,18 +7,22 @@ server.connection({
   host: '0.0.0.0',
   port: process.env.PORT || 3000,
   routes: {
-    cors: process.env.ENABLE_CORS === 'true'
+    cors: {
+      origin: ['*'],
+      credentials: true
+    }
   }
 });
 
 let serverMethods: ServerMethods = new ServerMethods(server);
-serverMethods.registerPlugins();
-serverMethods.registerRoutes();
+serverMethods.registerPlugins()
+.then(() => serverMethods.registerRoutes())
+.then(() => {
+  server.start((err) => {
+    if (err) {
+      throw err;
+    }
 
-server.start((err) => {
-  if (err) {
-    throw err;
-  }
-
-  console.log(`Server running at: ${server.info.uri}`);
+    console.log(`Server running at: ${server.info.uri}`);
+  });
 });

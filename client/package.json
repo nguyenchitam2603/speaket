@@ -11,8 +11,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/classnames": "^2.2.0",
-    "@types/is-relative-url": "^2.0.0",
     "bootstrap-social": "^5.1.1",
     "classnames": "^2.2.5",
     "gentelella": "git+https://github.com/puikinsh/gentelella.git",
@@ -29,6 +27,8 @@
     "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
+    "@types/classnames": "^2.2.3",
+    "@types/is-relative-url": "^2.0.0",
     "@types/react": "^15.0.24",
     "@types/react-dom": "^15.5.0",
     "@types/react-hot-loader": "^3.0.1",

@@ -16,7 +16,7 @@ export class RouterComponent extends React.Component<RouterComponent.Props, Rout
   render() {
     return (
       <BrowserRouter>
-        <Route path={Routes.baseUrl} render={() => <AppComponent />} />
+        <AppComponent />
       </BrowserRouter>
     );
   }
