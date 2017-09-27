@@ -19,7 +19,7 @@ namespace SignUpComponent {
   }
 }
 
-export class SignUpComponent extends React.Component<SignUpComponent.Props, SignUpComponent.State> {
+export class SignUpComponent extends React.Component<any, SignUpComponent.State> {
   constructor() {
     super();
 
@@ -43,12 +43,12 @@ export class SignUpComponent extends React.Component<SignUpComponent.Props, Sign
   handleSubmit(event) {
     event.preventDefault();
 
-    RestClientService.getInstance().post('/signup', new SignUpPayload(this.state.email, this.state.password))
+    RestClientService.getInstance().post(Routes.signUpApi, new SignUpPayload(this.state.email, this.state.password))
       .then(() => {
-        this.setState({ signup_error: '', redirect: true })
+        this.setState({ signup_error: '', redirect: true });
       })
       .catch(error => {
-        this.setState({ signup_error: error.message })
+        this.setState({ signup_error: error.message });
       })
   }
 

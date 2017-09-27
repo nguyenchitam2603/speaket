@@ -27,9 +27,16 @@ export class RestClientService {
     // The url can be a relative or absolute url
     return fetch(isRelativeUrl(url) ? (this.baseUrl + url) : url, {
       method: 'GET',
-      headers: headers
+      headers: headers,
+      credentials: 'include',
     }).then((response: Response) => {
-      return response.json();
+      return response.json().then(data => {
+        if (response.ok) {
+          return data;
+        } else {
+          return Promise.reject(data);
+        }
+      });
     });
   }
 
@@ -39,6 +46,7 @@ export class RestClientService {
     return fetch(isRelativeUrl(url) ? (this.baseUrl + url) : url, {
       method: 'POST',
       headers: headers,
+      credentials: 'include',
       body: JSON.stringify(payload)
     }).then((response: Response) => {
       return response.json().then(data => {
@@ -57,6 +65,7 @@ export class RestClientService {
     return fetch(isRelativeUrl(url) ? (this.baseUrl + url) : url, {
       method: 'PUT',
       headers: headers,
+      credentials: 'include',
       body: JSON.stringify(payload)
     }).then((response: Response) => {
       return response.json();
@@ -68,7 +77,8 @@ export class RestClientService {
     // The url can be a relative or absolute url
     return fetch(isRelativeUrl(url) ? (this.baseUrl + url) : url, {
       method: 'DELETE',
-      headers: headers
+      headers: headers,
+      credentials: 'include',
     }).then((response: Response) => {
       return response.json();
     });

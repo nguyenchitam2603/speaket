@@ -27,11 +27,17 @@ export class ServerMethods {
     });
   }
 
-  public registerPlugins(): void {
-    this.server.methods.registerPlugins.call(this.server);
+  public registerPlugins(): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      this.server.methods.registerPlugins.call(this.server);
+      resolve();
+    });
   }
 
-  public registerRoutes(): void {
-    this.server.methods.registerRoutes.call(this.server);
+  public registerRoutes(): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      this.server.methods.registerRoutes.call(this.server);
+      resolve();
+    });
   }
 }

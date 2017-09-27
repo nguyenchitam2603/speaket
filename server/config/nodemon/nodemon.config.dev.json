@@ -1,7 +1,6 @@
 {
   "env": {
     "ENVIRONMENT": "DEV",
-    "ENABLE_CORS": true,
     "PORT": ""
   }
 }
