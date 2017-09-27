@@ -23,9 +23,9 @@ namespace SignInComponent {
   }
 }
 
-export class SignInComponent extends React.Component<SignInComponent.Props, SignInComponent.State> {
-  constructor() {
-    super();
+export class SignInComponent extends React.Component<any, SignInComponent.State> {
+  constructor(props) {
+    super(props);
 
     this.state = {
       redirect: false,
@@ -49,7 +49,7 @@ export class SignInComponent extends React.Component<SignInComponent.Props, Sign
   handleNormalLogin(event) {
     event.preventDefault();
 
-    RestClientService.getInstance().post('/signin', new SignInPayload(this.state.email, this.state.password))
+    RestClientService.getInstance().post(Routes.signInApi, new SignInPayload(this.state.email, this.state.password))
       .then(() => {
         this.setState({ signin_error: '', redirect: true })
       })
@@ -63,12 +63,13 @@ export class SignInComponent extends React.Component<SignInComponent.Props, Sign
   }
 
   handleSocialLoginFailure(error) {
-    this.setState({ signin_error: error.message })
+    this.setState({ signin_error: error.message });
   }
 
   render() {
     if (this.state.redirect) {
-      return <Redirect to={Routes.dashboardUrl} />;
+      const { from } = this.props.location.state || { from: { pathname: Routes.baseUrl } }
+      return <Redirect to={from} />;
     } else {
       return (
         <div>
@@ -111,7 +112,7 @@ export class SignInComponent extends React.Component<SignInComponent.Props, Sign
                       onLoginSuccess={this.handleSocialLoginSuccess}
                       onLoginFailure={this.handleSocialLoginFailure}>
                       <button type='button' className={classNames("btn", "btn-md", "btn-social", "btn-facebook", styles.social_button)}>
-                        <span className="fa fa-facebook"/>
+                        <span className="fa fa-facebook" />
                         Log in with Facebook
                       </button>
                     </SocialLoginComponent>
@@ -122,7 +123,7 @@ export class SignInComponent extends React.Component<SignInComponent.Props, Sign
                       onLoginSuccess={this.handleSocialLoginSuccess}
                       onLoginFailure={this.handleSocialLoginFailure}>
                       <button type='button' className={classNames("btn", "btn-md", "btn-social", "btn-google", styles.social_button)}>
-                        <span className="fa fa-google"/>
+                        <span className="fa fa-google" />
                         Log in with Google
                       </button>
                     </SocialLoginComponent>
