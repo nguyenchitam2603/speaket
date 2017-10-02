@@ -16,10 +16,16 @@ namespace SignInComponent {
   }
 
   export interface State {
-    redirect: boolean,
-    signin_error: string,
-    email: string,
-    password: string
+    // Error when signing in
+    error: string;
+
+    // UI display
+    isSigningIn: boolean;
+    isSignedIn: boolean;
+
+    // Payload
+    email: string;
+    password: string;
   }
 }
 
@@ -28,46 +34,50 @@ export class SignInComponent extends React.Component<any, SignInComponent.State>
     super(props);
 
     this.state = {
-      redirect: false,
-      signin_error: '',
+      error: '',
+
+      isSigningIn: false,
+      isSignedIn: false,
+
       email: '',
       password: ''
     };
 
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleNormalLogin = this.handleNormalLogin.bind(this);
+    this.inputChangeHandler = this.inputChangeHandler.bind(this);
+    this.signInHandler = this.signInHandler.bind(this);
     this.handleSocialLoginSuccess = this.handleSocialLoginSuccess.bind(this);
     this.handleSocialLoginFailure = this.handleSocialLoginFailure.bind(this);
   }
 
-  handleInputChange(event) {
+  inputChangeHandler(event) {
     this.setState({
       [event.target.name]: event.target.value
     })
   }
 
-  handleNormalLogin(event) {
+  signInHandler(event) {
     event.preventDefault();
+    this.setState({ error: '', isSigningIn: true, isSignedIn: false });
 
     RestClientService.getInstance().post(Routes.signInApi, new SignInPayload(this.state.email, this.state.password))
       .then(() => {
-        this.setState({ signin_error: '', redirect: true })
+        this.setState({ error: '', isSigningIn: false, isSignedIn: true })
       })
       .catch(error => {
-        this.setState({ signin_error: error.message })
+        this.setState({ error: error.message, isSigningIn: false, isSignedIn: false })
       })
   }
 
   handleSocialLoginSuccess(user) {
-    this.setState({ signin_error: '', redirect: true })
+    this.setState({ error: '', isSignedIn: true })
   }
 
   handleSocialLoginFailure(error) {
-    this.setState({ signin_error: error.message });
+    this.setState({ error: error.message });
   }
 
   render() {
-    if (this.state.redirect) {
+    if (this.state.isSignedIn) {
       const { from } = this.props.location.state || { from: { pathname: Routes.baseUrl } }
       return <Redirect to={from} />;
     } else {
@@ -78,22 +88,26 @@ export class SignInComponent extends React.Component<any, SignInComponent.State>
           <div className='login_wrapper'>
             <div className='animate form login_form'>
               <section className='login_content'>
-                <form onSubmit={this.handleNormalLogin}>
-                  <h1>Login</h1>
-                  <div className={styles.signin_error}>{this.state.signin_error}</div>
+                <form onSubmit={this.signInHandler}>
+                  <h1>Sign in</h1>
+                  <div className={styles.error}>{this.state.error}</div>
                   <div>
-                    <input name='email' type='email' className='form-control' placeholder='Email' required={true} onChange={this.handleInputChange} />
+                    <input name='email' type='email' className='form-control' placeholder='Email' required={true} onChange={this.inputChangeHandler} />
                   </div>
                   <div>
-                    <input name='password' type='password' className='form-control' placeholder='Password' required={true} onChange={this.handleInputChange} />
+                    <input name='password' type='password' className='form-control' placeholder='Password' required={true} onChange={this.inputChangeHandler} />
                   </div>
                   <div>
-                    <button type='submit' className='btn btn-default'>Log in</button>
+                    <button type='submit' className='btn btn-default' disabled={this.state.isSigningIn ? true : false}>
+                      {
+                        this.state.isSigningIn ? 'Signing in ...' : 'Sign in'
+                      }
+                    </button>
                   </div>
 
                   <br />
                   <div>
-                    <a href='#'>Lost your password?</a>
+                    <Link to={Routes.forgotPasswordUrl}> Forgot password?</Link>
                   </div>
                   <div>
                     <p className='change_link'>New to Speaket?
@@ -113,7 +127,7 @@ export class SignInComponent extends React.Component<any, SignInComponent.State>
                       onLoginFailure={this.handleSocialLoginFailure}>
                       <button type='button' className={classNames("btn", "btn-md", "btn-social", "btn-facebook", styles.social_button)}>
                         <span className="fa fa-facebook" />
-                        Log in with Facebook
+                        Sign in with Facebook
                       </button>
                     </SocialLoginComponent>
 
@@ -124,7 +138,7 @@ export class SignInComponent extends React.Component<any, SignInComponent.State>
                       onLoginFailure={this.handleSocialLoginFailure}>
                       <button type='button' className={classNames("btn", "btn-md", "btn-social", "btn-google", styles.social_button)}>
                         <span className="fa fa-google" />
-                        Log in with Google
+                        Sign in with Google
                       </button>
                     </SocialLoginComponent>
                   </div>

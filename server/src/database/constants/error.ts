@@ -3,5 +3,8 @@ export enum Error {
 
   // IO operation errors
   DuplicateData = 'DuplicateData',
-  InvalidData = 'InvalidData'
+  InvalidData = 'InvalidData',
+
+  // Email token
+  TokenExpired = 'TokenExpired'
 }

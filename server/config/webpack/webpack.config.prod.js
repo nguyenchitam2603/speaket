@@ -64,7 +64,12 @@ module.exports = {
         "ENVIRONMENT": JSON.stringify("PROD"),
 
         // Server config variables
-        "PORT": "process.env.PORT"
+        "PORT": "process.env.PORT",
+
+        // Mail to reset password
+        "MAIL_SERVICE": JSON.stringify("gmail"),
+        "MAIL_USER": JSON.stringify("speaketservice@gmail.com"),
+        "MAIL_PASS": JSON.stringify("speaketsupporter")
       }
     })
   ]

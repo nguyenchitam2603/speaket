@@ -23,10 +23,20 @@ export class DashboardComponent extends React.Component<any, DashboardComponent.
     // When logging in again, the doms are losted, so their click event
     // also losted too. Loading custom.js will assign the event handler
     // to the dom again
-    const script = document.createElement("script");
-    script.src = "/js/custom.min.js";
+    let script = document.createElement("script");
+    script.src = "/js/vendor.bundle.js";
     script.async = true;
     document.body.appendChild(script);
+
+    // script = document.createElement("script");
+    // script.src = "/js/custom.min.js";
+    // script.async = true;
+    // document.body.appendChild(script);
+
+    // script = document.createElement("script");
+    // script.src = "/js/bootstrap.min.js";
+    // script.async = true;
+    // document.body.appendChild(script);
   }
 
   render() {
@@ -46,7 +56,7 @@ export class DashboardComponent extends React.Component<any, DashboardComponent.
 
                 <ul className='nav navbar-nav navbar-right'>
                   <li className=''>
-                    <a href='javascript:;' className='user-profile dropdown-toggle' data-toggle='dropdown' aria-expanded='false'>
+                    <a className='user-profile dropdown-toggle' data-toggle='dropdown' aria-expanded='false'>
                       <img src='images/img.jpg' alt='' />John Doe
                       <span className=' fa fa-angle-down' />
                     </a>

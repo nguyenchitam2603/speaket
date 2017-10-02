@@ -27,6 +27,14 @@ export let UserSchema: Mongoose.Schema = new Mongoose.Schema({
     },
     required: [true, 'Password required']
   },
+  passwordResetToken: {
+    type: String,
+    default: null
+  },
+  passwordResetTokenExpireTime: {
+    type: Number,
+    default: null
+  },
   roles: {
     type: [{ type: String, enum: ['user', 'admin'] }],
     default: 'user'
