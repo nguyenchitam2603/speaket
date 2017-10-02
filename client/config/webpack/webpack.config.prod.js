@@ -23,7 +23,7 @@ module.exports = {
       "jquery",
 
       "gentelella/vendors/bootstrap/dist/js/bootstrap.min.js",
-      "gentelella/build/js/custom.min.js"
+      "gentelella/build/js/custom.min.js",
     ]
   },
   output: {

@@ -1,6 +1,10 @@
 {
   "env": {
     "ENVIRONMENT": "DEV",
-    "PORT": ""
+    "PORT": 3000,
+
+    "MAIL_SERVICE": "gmail",
+    "MAIL_USER": "speaketservice@gmail.com",
+    "MAIL_PASS": "speaketsupporter"
   }
 }

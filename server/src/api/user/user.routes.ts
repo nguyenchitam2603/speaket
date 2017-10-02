@@ -1,6 +1,9 @@
 import * as Hapi from 'hapi';
 
-import { signInValidator, signUpValidator, signOutValidator } from './user.validator';
+import {
+  signInValidator, signUpValidator, signOutValidator, forgotPasswordValidator,
+  resetPasswordValidator, getTokenStatusValidator
+} from './user.validator';
 import { userController } from './user.controller';
 
 export let userRouteConfigurations: Hapi.RouteConfiguration[] = [
@@ -44,6 +47,33 @@ export let userRouteConfigurations: Hapi.RouteConfiguration[] = [
         strategy: 'cookie',
         mode: 'try'
       }
+    }
+  },
+  {
+    method: 'POST',
+    path: '/forgot-password',
+    handler: userController.forgotPassword,
+    config: {
+      auth: false,
+      validate: forgotPasswordValidator
+    }
+  },
+  {
+    method: 'POST',
+    path: '/reset-password',
+    handler: userController.resetPassword,
+    config: {
+      auth: false,
+      validate: resetPasswordValidator
+    }
+  },
+  {
+    method: 'POST',
+    path: '/token-status',
+    handler: userController.getTokenStatus,
+    config: {
+      auth: false,
+      validate: getTokenStatusValidator
     }
   }
 ];

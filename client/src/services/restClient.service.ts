@@ -10,7 +10,7 @@ export class RestClientService {
   });
   private readonly baseUrl: string = window.location.protocol
   + '//' + window.location.hostname + ':'
-  + process.env.PORT || window.location.port;
+  + (process.env.PORT || window.location.port) + '/';
 
   private constructor() { }
 

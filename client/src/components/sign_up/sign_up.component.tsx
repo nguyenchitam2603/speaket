@@ -12,10 +12,16 @@ namespace SignUpComponent {
   }
 
   export interface State {
-    redirect: boolean,
-    signup_error: string,
-    email: string,
-    password: string
+    // Error when signing up
+    error: string;
+
+    // UI display
+    isSigningUp: boolean;
+    isSignedUp: boolean;
+
+    // Payload
+    email: string;
+    password: string;
   }
 }
 
@@ -24,36 +30,40 @@ export class SignUpComponent extends React.Component<any, SignUpComponent.State>
     super();
 
     this.state = {
-      redirect: false,
-      signup_error: '',
+      error: '',
+
+      isSigningUp: false,
+      isSignedUp: false,
+
       email: '',
       password: ''
     };
 
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.inputChangeHandler = this.inputChangeHandler.bind(this);
+    this.submitHandler = this.submitHandler.bind(this);
   }
 
-  handleInputChange(event) {
+  inputChangeHandler(event) {
     this.setState({
       [event.target.name]: event.target.value
     })
   }
 
-  handleSubmit(event) {
+  submitHandler(event) {
     event.preventDefault();
+    this.setState({ error: '', isSigningUp: true, isSignedUp: false });
 
     RestClientService.getInstance().post(Routes.signUpApi, new SignUpPayload(this.state.email, this.state.password))
       .then(() => {
-        this.setState({ signup_error: '', redirect: true });
+        this.setState({ error: '', isSigningUp: false, isSignedUp: true });
       })
       .catch(error => {
-        this.setState({ signup_error: error.message });
+        this.setState({ error: error.message, isSigningUp: false, isSignedUp: false });
       })
   }
 
   render() {
-    if (this.state.redirect) {
+    if (this.state.isSignedUp) {
       return <Redirect to={Routes.baseUrl} />;
     } else {
       return (
@@ -64,17 +74,21 @@ export class SignUpComponent extends React.Component<any, SignUpComponent.State>
           <div className='login_wrapper'>
             <div id='register' className='form'>
               <section className='login_content'>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.submitHandler}>
                   <h1>Create Account</h1>
-                  <div className={styles.signup_error}>{this.state.signup_error}</div>
+                  <div className={styles.error}>{this.state.error}</div>
                   <div>
-                    <input name='email' type='email' className='form-control' placeholder='Email' required={true} onChange={this.handleInputChange} />
+                    <input name='email' type='email' className='form-control' placeholder='Email' required={true} onChange={this.inputChangeHandler} />
                   </div>
                   <div>
-                    <input name='password' type='password' className='form-control' placeholder='Password' required={true} onChange={this.handleInputChange} />
+                    <input name='password' type='password' className='form-control' placeholder='Password' required={true} onChange={this.inputChangeHandler} />
                   </div>
                   <div>
-                    <button type="submit" className="btn btn-default">Submit</button>
+                    <button type="submit" className="btn btn-default" disabled={this.state.isSigningUp ? true : false}>
+                      {
+                        this.state.isSigningUp ? 'Signing up ...' : 'Sign up'
+                      }
+                    </button>
                   </div>
 
                   <div className='clearfix' />

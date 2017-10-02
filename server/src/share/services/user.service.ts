@@ -13,6 +13,18 @@ export class UserService {
   public addUser(user: User): Promise<Error> {
     return this.userRepository.addUser(user);
   }
+
+  public addPasswordResetToken(email: string, token: string, expireTime: number): Promise<Error> {
+    return this.userRepository.addPasswordResetToken(email, token, expireTime);
+  }
+
+  public resetPassword(token: string, password: string): Promise<Error> {
+    return this.userRepository.resetPassword(token, password);
+  }
+
+  public isTokenExpired(token: string): Promise<Error> {
+    return this.userRepository.isTokenExpired(token);
+  }
 }
 
 export let userService: UserService = new UserService(new UserRepository());
