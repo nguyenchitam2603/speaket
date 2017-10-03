@@ -14,8 +14,8 @@
     "postbuild": "npm run collect.server && npm run collect.client",
     "build.server": "cd ./server && npm run build",
     "build.client": "cd ./client && npm run build",
-    "collect.server": "cpx ./server/dist/**/*.* ./dist",
-    "collect.client": "cpx ./client/dist/**/*.* ./dist"
+    "collect.server": "cpx ./server/dist/**/* ./dist",
+    "collect.client": "cpx ./client/dist/**/* ./dist"
   },
   "keywords": [],
   "author": "",
