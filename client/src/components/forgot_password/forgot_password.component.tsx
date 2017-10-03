@@ -98,7 +98,7 @@ export class ForgotPasswordComponent extends React.Component<any, ForgotPassword
                             If it doesn't appear within a few minutes, check your spam folder.
                           </div>
                           <div>
-                            <button autoFocus type="submit" className="btn btn-default" onClick={this.navigateToSignInHandler}>Return to sign in</button>
+                            <button autoFocus={true} type="submit" className="btn btn-default" onClick={this.navigateToSignInHandler}>Return to sign in</button>
                           </div>
                         </div>
                       ) :
