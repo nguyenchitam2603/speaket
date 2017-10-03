@@ -34,10 +34,10 @@ export class GithubComponent extends React.Component<GithubComponent.Props, Gith
                 </thead>
                 <tbody>
                   {
-                    this.props.githubMembers.map(member => {
+                    this.props.githubMembers.map((member, index) => {
                       return (
-                        <tr>
-                          <td>{member.name}</td>
+                        <tr key={index}>
+                          <td>{member.name} </td>
                           <td>
                             <img src={member.avatarUrl} width="100"/>
                           </td>

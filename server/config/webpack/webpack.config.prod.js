@@ -53,8 +53,7 @@ module.exports = {
       root: serverPath
     }),
     new CopyWebpackPlugin([
-      { from: path.resolve(serverPath, "package.json"), to: distPath },
-      { from: path.resolve(serverPath, "Procfile"), to: distPath }
+      { from: path.resolve(serverPath, "package.json"), to: distPath }
     ]),
     new webpack.DefinePlugin({
       "process.env": {
