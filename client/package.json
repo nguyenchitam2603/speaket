@@ -15,7 +15,6 @@
     "classnames": "^2.2.5",
     "gentelella": "git+https://github.com/puikinsh/gentelella.git",
     "is-relative-url": "^2.0.0",
-    "jquery": "^2.2.4",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.5",
