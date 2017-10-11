@@ -18,12 +18,17 @@ module.exports = {
       "./index.tsx"
     ],
     vendor: [
+      "classnames",
+      "is-relative-url",
       "react",
       "react-dom",
-      "jquery",
-
-      "gentelella/vendors/bootstrap/dist/js/bootstrap.min.js",
-      "gentelella/build/js/custom.min.js",
+      "react-redux",
+      "react-router",
+      "react-router-dom",
+      "react-social-login",
+      "redux",
+      "redux-actions",
+      "redux-thunk"
     ]
   },
   output: {
@@ -94,7 +99,7 @@ module.exports = {
       }
     }),
     new ExtractTextPlugin("css/main.css"),
-    new webpack.optimize.CommonsChunkPlugin({ name: "vendor", filename: "js/vendor.bundle.js" }),
+    new webpack.optimize.CommonsChunkPlugin({ names: ["vendor"], filename: 'js/[name].bundle.js' }),
     new UglifyJSPlugin({
       compress: {
         warnings: false
@@ -110,10 +115,9 @@ module.exports = {
     }),
     new CopyWebpackPlugin([
       // Relative to context path (src) in this case
-      { from: '../node_modules/jquery/dist/jquery.min.js', to: 'js/jquery.min.js' },
+      { from: '../node_modules/gentelella/vendors/jquery/dist/jquery.min.js', to: 'js/jquery.min.js' },
       { from: '../node_modules/gentelella/vendors/bootstrap/dist/js/bootstrap.min.js', to: 'js/bootstrap.min.js' },
       { from: '../node_modules/gentelella/build/js/custom.min.js', to: 'js/custom.min.js' },
-      { from: '../node_modules/react-social-login/dist/social-login.js', to: 'js/social-login.js' },
 
       { from: '../node_modules/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css', to: 'css/bootstrap.min.css' },
       { from: '../node_modules/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css.map', to: 'css/bootstrap.min.css.map' },
@@ -146,9 +150,7 @@ module.exports = {
     new HtmlWebpackIncludeAssetsPlugin({
       assets: [
         'js/jquery.min.js',
-        'js/bootstrap.min.js',
-        'js/custom.min.js',
-        'js/social-login.js'
+        'js/bootstrap.min.js'
       ],
       append: true
     }),

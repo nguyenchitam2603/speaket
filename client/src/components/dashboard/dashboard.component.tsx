@@ -23,20 +23,16 @@ export class DashboardComponent extends React.Component<any, DashboardComponent.
     // When logging in again, the doms are losted, so their click event
     // also losted too. Loading custom.js will assign the event handler
     // to the dom again
+    let element = document.getElementById('custom_min_js');
+    if (element) {
+      element.parentNode.removeChild(element);
+    }
+
     let script = document.createElement("script");
-    script.src = "/js/vendor.bundle.js";
-    script.async = true;
+    script.id = 'custom_min_js';
+    script.type = "text/javascript";
+    script.src = "js/custom.min.js";
     document.body.appendChild(script);
-
-    // script = document.createElement("script");
-    // script.src = "/js/custom.min.js";
-    // script.async = true;
-    // document.body.appendChild(script);
-
-    // script = document.createElement("script");
-    // script.src = "/js/bootstrap.min.js";
-    // script.async = true;
-    // document.body.appendChild(script);
   }
 
   render() {
