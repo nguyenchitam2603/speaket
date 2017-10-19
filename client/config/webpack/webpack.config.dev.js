@@ -76,10 +76,9 @@ module.exports = {
     }),
     new CopyWebpackPlugin([
       // Relative to context path (src) in this case
-      { from: '../node_modules/jquery/dist/jquery.min.js', to: 'js/jquery.min.js' },
+      { from: '../node_modules/gentelella/vendors/jquery/dist/jquery.min.js', to: 'js/jquery.min.js' },
       { from: '../node_modules/gentelella/vendors/bootstrap/dist/js/bootstrap.min.js', to: 'js/bootstrap.min.js' },
       { from: '../node_modules/gentelella/build/js/custom.min.js', to: 'js/custom.min.js' },
-      { from: '../node_modules/react-social-login/dist/social-login.js', to: 'js/social-login.js' },
 
       { from: '../node_modules/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css', to: 'css/bootstrap.min.css' },
       { from: '../node_modules/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css.map', to: 'css/bootstrap.min.css.map' },
@@ -112,8 +111,7 @@ module.exports = {
     new HtmlWebpackIncludeAssetsPlugin({
       assets: [
         'js/jquery.min.js',
-        'js/bootstrap.min.js',
-        'js/social-login.js'
+        'js/bootstrap.min.js'
       ],
       append: true
     }),
