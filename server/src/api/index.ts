@@ -1,7 +1,8 @@
 import * as Hapi from 'hapi';
 
-import { userRouteConfigurations } from './user';
+import { IApiConfiguration } from './i-api-configuration';
+import { userApiConfiguration } from './user';
 
-export const apiRoutes: Hapi.RouteConfiguration[] = [
-  ...userRouteConfigurations
+export const apiConfigurations: IApiConfiguration[] = [
+  userApiConfiguration
 ];

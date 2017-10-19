@@ -1,7 +1,7 @@
 import * as Hapi from 'hapi';
 import { FileHandlerRouteObject } from 'inert';
 
-import { apiRoutes } from './api';
+import { apiConfigurations } from './api';
 
 let fileRouteConfigurations: Hapi.RouteConfiguration[] = [
   {
@@ -47,15 +47,17 @@ let fileRouteConfigurations: Hapi.RouteConfiguration[] = [
   }
 ];
 
-let routeConfigurations: Hapi.RouteConfiguration[] = [
-  ...fileRouteConfigurations,
-  ...apiRoutes
-];
-
 export function registerRoutes() {
   let server: Hapi.Server = this;
 
-  routeConfigurations.forEach(routeConfiguration => {
-    server.route(routeConfiguration);
+  // Static file routes
+  fileRouteConfigurations.forEach(configuration => {
+    server.route(configuration);
+  });
+
+  // Api routes
+  apiConfigurations.forEach(configuration => {
+    server.bind(configuration.controller);
+    server.route(configuration.routes);
   });
 }

@@ -7,6 +7,8 @@ import { User } from '../../share/models';
 import { userService, mailService } from '../../share';
 
 class UserController {
+  private readonly TOKEN_EXPIRATION_TIME = 3 * 24 * 60 * 60 * 1000; // Token will be expired after 3 days
+
   public signUp(request: Hapi.Request, reply: Hapi.ReplyNoContinue) {
     let user: User = request.payload;
 
@@ -55,7 +57,7 @@ class UserController {
 
   public forgotPassword(request: Hapi.Request, reply: Hapi.ReplyNoContinue) {
     let token: string = crypto.randomBytes(100).toString('hex');
-    let tokenExpireTime: number =  Date.now() + 3 * 24 * 60 * 60 * 1000; // This link will be expired after 3 days
+    let tokenExpireTime: number =  Date.now() + this.TOKEN_EXPIRATION_TIME;
     let resetLink: string = request.headers.origin + '/reset-password/' + token;
     let email: string = request.payload.email;
 
