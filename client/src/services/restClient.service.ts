@@ -1,7 +1,5 @@
 let isRelativeUrl = require('is-relative-url');
 
-declare var process;
-
 export class RestClientService {
   private static restClientService;
   private readonly headers: Headers = new Headers({

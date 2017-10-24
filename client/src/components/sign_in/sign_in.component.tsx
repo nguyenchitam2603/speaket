@@ -3,13 +3,11 @@ import * as classNames from 'classnames';
 import { Link, Redirect } from 'react-router-dom';
 
 import * as Routes from '../app.routes';
-import { RestClientService } from '../../services';
 import { SignInPayload } from '../../models';
-import SocialLoginComponent from '../share/socials/social_button.component';
+import { SocialSignInComponent } from '../share/socials/social_signin.component';
+import { UserService } from '../../services';
 
 import * as styles from './sign_in.style.css';
-
-declare var process;
 
 namespace SignInComponent {
   export interface Props {
@@ -45,8 +43,8 @@ export class SignInComponent extends React.Component<any, SignInComponent.State>
 
     this.inputChangeHandler = this.inputChangeHandler.bind(this);
     this.signInHandler = this.signInHandler.bind(this);
-    this.handleSocialLoginSuccess = this.handleSocialLoginSuccess.bind(this);
-    this.handleSocialLoginFailure = this.handleSocialLoginFailure.bind(this);
+    this.socialSignInSuccessHandler = this.socialSignInSuccessHandler.bind(this);
+    this.socialSignInFailureHandler = this.socialSignInFailureHandler.bind(this);
   }
 
   inputChangeHandler(event) {
@@ -59,21 +57,19 @@ export class SignInComponent extends React.Component<any, SignInComponent.State>
     event.preventDefault();
     this.setState({ error: '', isSigningIn: true, isSignedIn: false });
 
-    RestClientService.getInstance().post(Routes.signInApi, new SignInPayload(this.state.email, this.state.password))
-      .then(() => {
-        this.setState({ error: '', isSigningIn: false, isSignedIn: true })
-      })
-      .catch(error => {
-        this.setState({ error: error.message, isSigningIn: false, isSignedIn: false })
-      })
+    UserService.signIn(
+      new SignInPayload(this.state.email, this.state.password),
+      () => this.setState({ error: '', isSigningIn: false, isSignedIn: true }),
+      (error) => this.setState({ error: error, isSigningIn: false, isSignedIn: false })
+    );
   }
 
-  handleSocialLoginSuccess(user) {
-    this.setState({ error: '', isSignedIn: true })
+  socialSignInSuccessHandler() {
+    this.setState({ error: '', isSignedIn: true });
   }
 
-  handleSocialLoginFailure(error) {
-    this.setState({ error: error.message });
+  socialSignInFailureHandler(error) {
+    this.setState({ error: error });
   }
 
   render() {
@@ -120,27 +116,27 @@ export class SignInComponent extends React.Component<any, SignInComponent.State>
                   </div>
 
                   <div className='separator'>
-                    <SocialLoginComponent
+                    <SocialSignInComponent
                       provider='facebook'
                       appId={process.env.FACEBOOK_APP_ID}
-                      onLoginSuccess={this.handleSocialLoginSuccess}
-                      onLoginFailure={this.handleSocialLoginFailure}>
+                      onSignInSuccess={this.socialSignInSuccessHandler}
+                      onSignInFailure={this.socialSignInFailureHandler}>
                       <button type='button' className={classNames("btn", "btn-md", "btn-social", "btn-facebook", styles.social_button)}>
                         <span className="fa fa-facebook" />
                         Sign in with Facebook
                       </button>
-                    </SocialLoginComponent>
+                    </SocialSignInComponent>
 
-                    <SocialLoginComponent
+                    <SocialSignInComponent
                       provider='google'
                       appId={process.env.GOOGLE_APP_ID}
-                      onLoginSuccess={this.handleSocialLoginSuccess}
-                      onLoginFailure={this.handleSocialLoginFailure}>
+                      onSignInSuccess={this.socialSignInSuccessHandler}
+                      onSignInFailure={this.socialSignInFailureHandler}>
                       <button type='button' className={classNames("btn", "btn-md", "btn-social", "btn-google", styles.social_button)}>
                         <span className="fa fa-google" />
                         Sign in with Google
                       </button>
-                    </SocialLoginComponent>
+                    </SocialSignInComponent>
                   </div>
 
                   <div className='separator'>

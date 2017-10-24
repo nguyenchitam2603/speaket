@@ -18,8 +18,7 @@ const render = Component => {
 };
 
 render(RouterComponent);
-
-declare var process;
+(window as any).bPromise = { then: () => { return; } };
 console.log(`Current directory: ${process.cwd()}`);
 
 if (module.hot) {
