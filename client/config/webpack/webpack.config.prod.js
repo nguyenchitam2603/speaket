@@ -25,7 +25,6 @@ module.exports = {
       "react-redux",
       "react-router",
       "react-router-dom",
-      "react-social-login",
       "redux",
       "redux-actions",
       "redux-thunk"

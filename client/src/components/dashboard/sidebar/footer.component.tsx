@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 
 import * as Routes from './../../app.routes';
-import { RestClientService } from '../../../services';
+import { UserService } from '../../../services';
 
 namespace FooterComponent {
   export interface Props {
@@ -14,28 +14,19 @@ namespace FooterComponent {
 }
 
 export class FooterComponent extends React.Component<FooterComponent.Props, FooterComponent.State> {
-
-
   constructor(props) {
     super(props);
 
     this.state = {
       isSignedOut: false
-    }
+    };
 
-    this.handleNormalLogout = this.handleNormalLogout.bind(this);
+    this.signOutHandler = this.signOutHandler.bind(this);
   }
 
-  handleNormalLogout(event) {
+  public signOutHandler(event): void {
     event.preventDefault();
-
-    RestClientService.getInstance().get(Routes.signOutApi)
-      .then(() => {
-        this.setState({ isSignedOut: true })
-      })
-      .catch(error => {
-        this.setState({ isSignedOut: false })
-      });
+    UserService.signOut(() => this.setState({ isSignedOut: true }), null);
   }
 
   render() {
@@ -52,7 +43,7 @@ export class FooterComponent extends React.Component<FooterComponent.Props, Foot
         </a>
         {(
           this.state.isSignedOut ? <Redirect to={Routes.signInUrl} /> :
-            <a title='Logout' onClick={this.handleNormalLogout}>
+            <a title='Sign Out' onClick={this.signOutHandler}>
               <span className='glyphicon glyphicon-off' aria-hidden='true' />
             </a>
         )}

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
 import * as Routes from '../../app.routes';
-import { RestClientService } from '../../../services';
+import { UserService } from '../../../services';
 
 namespace AuthorizedRoute {
   export interface Props {
@@ -25,10 +25,10 @@ export class AuthorizedRoute extends React.Component<any, AuthorizedRoute.State>
   }
 
   componentWillMount() {
-    RestClientService.getInstance().get(Routes.signInStatusApi)
-      .then((isSignedIn) => {
-        this.setState({ isSignedIn: isSignedIn, loading: true })
-      });
+    UserService.validateSignedIn(
+      () => this.setState({ isSignedIn: true, loading: true }),
+      () => this.setState({ isSignedIn: false, loading: true })
+    );
   }
 
   render() {
