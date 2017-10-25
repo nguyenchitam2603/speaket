@@ -19,7 +19,7 @@ export class GoogleAuthService implements ISocialAuthService {
       ((d, s, id, cb) => {
         const fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) {
-          return;
+          resolve();
         }
         const js: any = d.createElement(s);
         js.id = id;
@@ -41,7 +41,6 @@ export class GoogleAuthService implements ISocialAuthService {
     return new Promise((resolve, reject) => {
       let wd = window as any;
       let auth = wd.gapi.auth2.getAuthInstance();
-
       resolve(auth.isSignedIn.get());
     });
   }

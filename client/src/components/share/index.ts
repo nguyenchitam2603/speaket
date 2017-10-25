@@ -1,1 +1,1 @@
-export * from './socials';
+export * from './authorized_route';

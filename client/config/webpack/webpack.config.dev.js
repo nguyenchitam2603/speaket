@@ -125,10 +125,16 @@ module.exports = {
       'process.env': {
         'ENVIROMENT': JSON.stringify('DEVELOPMENT'),
         'PORT': JSON.stringify(3000),
-
-        // Social App Ids
-        'FACEBOOK_APP_ID': JSON.stringify('318246265310307'),
-        'GOOGLE_APP_ID': JSON.stringify('984254288650-r5hivgg7sj5ab0eksuf968vmrqu969t8.apps.googleusercontent.com')
+        'SOCIAL_AUTHS': JSON.stringify([
+          {
+            provider: 'facebook',
+            appId: '318246265310307'
+          },
+          {
+            provider: 'google',
+            appId: '984254288650-r5hivgg7sj5ab0eksuf968vmrqu969t8.apps.googleusercontent.com'
+          }
+        ])
       }
     })
   ],

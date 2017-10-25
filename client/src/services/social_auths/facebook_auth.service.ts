@@ -20,6 +20,7 @@ export class FacebookAuthService implements ISocialAuthService {
         wd.FB.init({
           appId: appId,
           autoLogAppEvents: true,
+          cookie:true,
           xfbml: true,
           version: 'v2.10'
         });
@@ -30,7 +31,7 @@ export class FacebookAuthService implements ISocialAuthService {
       ((d, s, id) => {
         const fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) {
-          return;
+          resolve();
         }
         const js: any = d.createElement(s);
         js.id = id;
