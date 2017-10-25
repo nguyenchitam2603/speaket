@@ -21,14 +21,17 @@ export class AuthorizedRoute extends React.Component<any, AuthorizedRoute.State>
     this.state = {
       isSignedIn: false,
       loading: false
-    }
+    };
   }
 
   componentWillMount() {
-    UserService.validateSignedIn(
-      () => this.setState({ isSignedIn: true, loading: true }),
-      () => this.setState({ isSignedIn: false, loading: true })
-    );
+    UserService.initSocialAuth()
+      .then(() => {
+        UserService.validateSignedIn(
+          () => this.setState({ isSignedIn: true, loading: true }),
+          () => this.setState({ isSignedIn: false, loading: true })
+        );
+      });
   }
 
   render() {
